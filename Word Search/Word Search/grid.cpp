@@ -9,7 +9,6 @@ Description: Used to read a matrix of words from file to search through
 */
 
 #include "grid.h"
-#include "d_matrix.h"
 
 grid::grid()
 {
@@ -23,7 +22,7 @@ grid::grid(const string& name)
 
 void grid::readGrid(const string& fileName)
 {
-	// this stuff is an attempt. doesn't work
+	/* this stuff is an attempt. doesn't work
     ifstream stream(fileName.c_str(), ifstream::in);
 	if(!stream.is_open())
 		throw runtime_error("Failed to open grid file: " + fileName);
@@ -39,10 +38,10 @@ void grid::readGrid(const string& fileName)
 	for(int cnt = 0; cnt < data.cols() && stream.good(); cnt++)
 	{
 		getline(stream, line);
-		//parseLine(line, c);
+		parseLine(line, c);
 	}
 	stream.close();
-    
+     */
 }
 
 void grid::parseLine(const string& line, int numLine)
