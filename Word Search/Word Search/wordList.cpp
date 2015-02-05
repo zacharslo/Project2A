@@ -16,6 +16,10 @@ wordList::wordList()
 
 }
 
+vector<string> wordList::getWordList() {
+	return words;
+}
+
 void wordList::quickSort(int low, int high)
 {
 	if(high - low <= 1)

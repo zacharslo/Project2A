@@ -15,8 +15,7 @@ void findMatches(wordList&, grid&);
 void testSearch();
 
 
-int main(int argc, char** argv)
-{
+int main() {
 	testSearch();
 	return 0;
 }

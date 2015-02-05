@@ -23,9 +23,8 @@ class grid
 {
 	public: 
 		grid();
-    grid(const string& name);
-    vector<string> findMatches(wordList& wordl) const;
-		
+    	grid(const string& name);
+    	vector<string> findMatches(const wordList& wordl) const;		
 
 	private:
 		void readGrid(const string& name);

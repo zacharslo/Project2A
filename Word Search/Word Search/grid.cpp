@@ -9,19 +9,21 @@ Description: Used to read a matrix of words from file to search through
 */
 
 #include "grid.h"
+#include "wordlist.cpp"
 
-grid::grid()
-{
+grid::grid() {
 	readGrid("input15");
 }
 
-grid::grid(const string& name)
-{
+grid::grid(const string& name) {
 	readGrid(name);
 }
 
-void grid::readGrid(const string& fileName)
-{
+vector<string> grid::findMatches(const wordList& wordl) const{
+//	vector<string> words = wordl.getWordList();
+}
+
+void grid::readGrid(const string& fileName) {
 	/* this stuff is an attempt. doesn't work
     ifstream stream(fileName.c_str(), ifstream::in);
 	if(!stream.is_open())

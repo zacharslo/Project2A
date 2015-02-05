@@ -25,6 +25,7 @@ class wordList
 public:
 	wordList();
 	wordList(const string& name);
+	vector<string> getWordList();
 
 private:
 	vector<string> words;
