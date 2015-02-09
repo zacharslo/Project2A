@@ -18,34 +18,59 @@ wordList::wordList(const string& fileLoc) {
 	readWordList(fileLoc);
 }
 
+wordList::wordList(const vector<string>& wordl) {
+	words = wordl;
+}
+
+void wordList::printWordList() {
+	cout << words;
+}
+
 vector<string> wordList::getWordList() const {
 	return words;
 }
 
-vector<string> wordList::getSortedWordList() const {
-	return sortedWords;
+
+
+void wordList::insertionSort() {
+	for(int i = 0; i < words.size() - 1; i++) {
+		
+	}
 }
 
 void wordList::quickSort(int low, int high) {
-	if(high - low <= 1) {
-		return;
-	}
+	if(high - low > 1) {
+		
+		string pivot = words[high - 1];
+		int split = low;
 	
-	string pivot = words[high - 1];
-	int split = low;
-
-	for(int i = low; i < (high - 1); i++) {
-		if(words[i].compare(pivot) < 0) {
-			swap(i, split);
-			split++;
+		for(int i = low; i < (high - 1); i++) {
+			if(words[i].compare(pivot) < 0) {
+				swap(i, split);
+				split++;
+			}
 		}
+	
+		swap(high - 1, split);
+	
+		quickSort(low, split);
+		quickSort(split + 1, high);
 	}
-
-	swap(high - 1, split);
-
-	quickSort(low, split);
-	quickSort(split + 1, high);
 }
+
+void wordList::mergeSort() {
+	for(int i = 0; i < words.size() - 1; i++) {
+		
+	}
+}
+
+void wordList::binarySort() {
+	for(int i = 0; i < words.size() - 1; i++) {
+		
+	}
+}
+
+
 
 void wordList::readWordList(const string& fileLoc) {
 //	Copy from grid function

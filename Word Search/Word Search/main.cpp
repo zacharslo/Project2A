@@ -10,6 +10,7 @@ Description: Word search
 #include "wordList.cpp"
 //#include "wordList.c"
 #include <string>
+#include <time.h>
 
 using namespace std;
 
@@ -18,18 +19,13 @@ void search(const int alg);
 //void testSearch();
 
 int main() {
-	
-	search(0);
-	search(1);
-	search(2);
-	search(3);
-	
-//	cout << TotalTime;
+	int sort = 1;
+	search(sort);
 	
 	return 0;
 }
 
-void findMatches(const wordList& wordl, const grid& grid1) {
+void findMatches(const grid& grid1, const vector<string>& wordl) {
 	grid1.findMatches(wordl);
 }
 
@@ -40,32 +36,41 @@ void search(const int alg) {
 	grid grid1 = grid(fileLoc);
 	wordList wordl = wordList();
 	
+	time_t CPUtimeStart;
+	CPUtimeStart = time(NULL);
+	time_t CPUtimeSort;
+	time_t CPUtimeSearch;
+	time_t Totaltime;
+	
+	
 	if(alg == 0) {
-		
-//		cout << CPUtime;
+		wordl.insertionSort();
+		cout << "Sorted using Insertion Sort.\n";
 	}
 	if(alg == 1) {
-		
-//		cout << CPUtime;
+		wordl.quickSort(0, wordl.getWordList().size() - 1);
+		cout << "Sorted using Quick Sort.\n";
 	}
 	if(alg == 2) {
-		
-//		cout << CPUtime;
-	}
+		wordl.mergeSort();
+		cout << "Sorted using Merge Sort.\n";
+	}/*
 	if(alg == 3) {
-		
-//		cout << CPUtime;
-	}
+		wordl.binarySort();
+		cout << "Sorted using Binary Sort.\n";
+	}*/
+	
+	CPUtimeSort = time(NULL);
+	
+	cout << "Matches found:\n";
+	
+	findMatches(grid1, wordl.getWordList());
+	
+	CPUtimeSearch = time(NULL);
+	
+	cout << "The time it took to sort the word list: " << difftime(CPUtimeSort, CPUtimeStart);
+	
+	cout << "\nThe time it took to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeSort);
+	
+	cout << "\nThe total time it took to sort the word list and to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeStart) << "\n\n";
 }
-/*
-void testSearch() {
-	string name;
-
-	cout << "Enter the name of the file: ";
-	cin >> name;
-
-	grid grid1 = grid(name);
-	wordList wordl = wordList();
-
-	findMatches(wordl, grid1);
-}*/

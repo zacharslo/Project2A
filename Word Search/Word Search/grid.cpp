@@ -10,23 +10,20 @@ Description: Used to read a matrix of words from file to search through
 
 #include "grid.h"
 
-grid::grid() {
-	readGrid("input15");
-}
-
 grid::grid(const string& name) {
 	readGrid(name);
 }
 
 //*****************************NEEDS TO BE FINISHED***********************************
-//Compiles but not sure if correct..... depends on if we make the sorted words the correct answer.
-void grid::findMatches(const wordList& wordl) const{
-	vector<string> matches;
-	matches = wordl.getSortedWords();
+void grid::findMatches(const vector<string>& wordl) const{
+	vector<string> match;
+	match = wordl;
 	
-	for (int i = 0; i < matches.size(); i++) {
-		cout << matches[i];
-	}
+	//Create code that finds matches in grid matrix.
+	
+	wordList matches(match);
+	
+	matches.printWordList();
 }
 
 void grid::readGrid(const string& fileName) {

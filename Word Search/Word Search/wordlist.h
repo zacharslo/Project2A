@@ -18,22 +18,32 @@ Description: Used to read from a text file and store a list of words as a vector
 
 using namespace std;
 
+//overload << operator
+ostream& operator<< (ostream& output, const vector<string>& words) {
+	for (int i = 0; i < (words.size() - 1); i++) {
+        output << words[i] << "\n";
+	}
+	output << words.back() << "\n";
+    return output;
+}
+
 class wordList {
 	public:
 		wordList();
 		wordList(const string& fileLoc);
+		wordList(const vector<string>& wordl);
+		void printWordList();
 		
 		vector<string> getWordList() const;
-		vector<string> getSortedWordList() const;
 		
-		void insertionsort();
+		void insertionSort();
 		void quickSort(int low, int high);
-		void mergesort();
+		void mergeSort();
+		void binarySort();
 	
 	private:
 		void readWordList(const string& fileLoc);
 		vector<string> words;
-		vector<string> sortedWords;
 	    void swap(int word1, int word2);
 };
 
