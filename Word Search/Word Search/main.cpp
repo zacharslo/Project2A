@@ -6,32 +6,59 @@ Description: Word search
  */
 
 #include "grid.cpp"
+//#include "grid.c"
 #include "wordList.cpp"
+//#include "wordList.c"
 #include <string>
 
 using namespace std;
 
-void findMatches(wordList&, grid&);
-void testSearch();
-
+void findMatches(const wordList& wordl, const grid& grid1);
+void search(const int alg);
+//void testSearch();
 
 int main() {
-	testSearch();
+	
+	search(0);
+	search(1);
+	search(2);
+	search(3);
+	
+//	cout << TotalTime;
+	
 	return 0;
 }
 
-void findMatches(wordList& wordl, grid& grid1)
-{
-	vector<string> matches = grid1.findMatches(wordl);
-	cout << "Found matches: \n";
+void findMatches(const wordList& wordl, const grid& grid1) {
+	grid1.findMatches(wordl);
+}
 
-	for (int cnt = 0; cnt < matches.size(); cnt++)
-	{
-		cout << matches[cnt];
+void search(const int alg) {
+	string fileLoc;
+	cout << "Enter the file name of the grid you would like to use (including it's location): ";
+	cin >> fileLoc;
+	grid grid1 = grid(fileLoc);
+	wordList wordl = wordList();
+	
+	if(alg == 0) {
+		
+//		cout << CPUtime;
+	}
+	if(alg == 1) {
+		
+//		cout << CPUtime;
+	}
+	if(alg == 2) {
+		
+//		cout << CPUtime;
+	}
+	if(alg == 3) {
+		
+//		cout << CPUtime;
 	}
 }
-void testSearch()
-{
+/*
+void testSearch() {
 	string name;
 
 	cout << "Enter the name of the file: ";
@@ -41,4 +68,4 @@ void testSearch()
 	wordList wordl = wordList();
 
 	findMatches(wordl, grid1);
-}
+}*/

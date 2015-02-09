@@ -1,11 +1,9 @@
 /*
 wordList.h
-Author: Zach Sloane and Andrew Blum
+Authors: Zach Sloane and Andrew Blum
+
 Description: Used to read from a text file and store a list of words as a vector
-
 */
-
-// idk about this #define WORDLIST_CLASS
 
 #ifndef WORDLIST_CLASS
 #define WORDLIST_CLASS
@@ -20,17 +18,23 @@ Description: Used to read from a text file and store a list of words as a vector
 
 using namespace std;
 
-class wordList
-{
-public:
-	wordList();
-	wordList(const string& name);
-	vector<string> getWordList();
-
-private:
-	vector<string> words;
-	void quickSort(int low, int high);
-    void swap(int word1, int word2);
+class wordList {
+	public:
+		wordList();
+		wordList(const string& fileLoc);
+		
+		vector<string> getWordList() const;
+		vector<string> getSortedWordList() const;
+		
+		void insertionsort();
+		void quickSort(int low, int high);
+		void mergesort();
+	
+	private:
+		void readWordList(const string& fileLoc);
+		vector<string> words;
+		vector<string> sortedWords;
+	    void swap(int word1, int word2);
 };
 
 #endif
