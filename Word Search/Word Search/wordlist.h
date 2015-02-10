@@ -40,12 +40,14 @@ class wordList {
 		void quickSort(int low, int high);
 		void mergeSort();
 		
-		void binarySearch(const int binary);
+		//I think that my implementation of binarySearch should work (so i commented yours out for the moment)
+		//void binarySearch(const int binary);
 	
 	private:
 		void readWordList(const string& fileLoc);
 		vector<string> words;
 	    void swap(int word1, int word2);
+	    bool binarySearch(const string& searchFor, int start, int end) const;
 };
 
 #endif

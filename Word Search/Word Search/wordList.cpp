@@ -79,10 +79,26 @@ void wordList::mergeSort() {
 
 //***********************************************************Need to complete**********************************************************************
 //Conducts a binary search of the word list
-void wordList::binarySearch(const int binary) {
+/*void wordList::binarySearch(const int binary) {
 	if(words.size() - 1 < binary) {
 		
 	}
+}*/
+bool wordList::binarySearch(const string& word, int start, int end) const{
+    if(end < start)
+        return false;
+    else if (start == end)
+        return word.compare(words[start]) == 0;
+    
+    int middle = (start + end)/2;
+    int compareRes = word.compare(words[middle]);
+    
+    if(compareRes ==0)
+        return true;
+    else if(compareRes < 0)
+        return binarySearch(word, start, middle);
+    else
+        return binarySearch(word, middle + 1, end);
 }
 
 
