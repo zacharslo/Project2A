@@ -32,6 +32,7 @@ vector<string> wordList::getWordList() const {
 
 
 
+//***********************************************************Need to complete**********************************************************************
 void wordList::insertionSort() {
 	if(words.size() > 1) {
 		for(int i = 0; i < words.size() - 1; i++) {
@@ -60,6 +61,7 @@ void wordList::quickSort(int low, int high) {
 	}
 }
 
+//***********************************************************Need to complete**********************************************************************
 void wordList::mergeSort() {
 	if(words.size() > 1) {
 		for(int i = 0; i < words.size() - 1; i++) {
@@ -68,6 +70,7 @@ void wordList::mergeSort() {
 	}
 }
 
+//***********************************************************Need to complete**********************************************************************
 void wordList::binarySearch(const int binary) {
 	if(words.size() - 1 < binary) {
 		

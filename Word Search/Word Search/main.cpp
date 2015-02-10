@@ -19,7 +19,13 @@ void search(const int alg);
 //void testSearch();
 
 int main() {
-	int sort = 1;
+	int sort;
+	cout << "What type of sorting would you like to use?\nEnter \"0\" to use Insertion Sort.\nEnter \"1\" to use Quick Sort.\nEnter \"2\" to use Merge Sort.\n\nWhat is your pick? ";
+	cin >> sort;
+	if(sort < 0 || sort > 2) {
+		cout << "You have enterred an improper value, Quick Sort will be used.\n\n";
+		sort = 1;
+	}
 	search(sort);
 	
 	return 0;

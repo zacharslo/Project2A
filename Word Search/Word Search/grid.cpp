@@ -14,7 +14,7 @@ grid::grid(const string& name) {
 	readGrid(name);
 }
 
-//*****************************NEEDS TO BE FINISHED***********************************
+//***********************************************************Need to complete**********************************************************************
 void grid::findMatches(const vector<string>& wordl) const{
 	vector<string> match;
 	match = wordl;
