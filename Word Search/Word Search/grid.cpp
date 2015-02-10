@@ -27,6 +27,52 @@ void grid::findMatches(const vector<string>& wordl) const{
 }
 
 void grid::readGrid(const string& fileName) {
+	// untested, but I think it will work.
+	char character;
+	int place;
+	string line;
+	string getNumber;
+	bool num1read = false;
+	bool num2read = false;
+	int n = 0;
+	
+	ifstream gridfile;
+	gridfile.open(fileName.c_str());
+	
+	if(gridfile.is_open()) {
+		getline(gridfile, line);
+		for(int i = 0; i < (line.length() - 1); i++) {
+			if(isdigit(line[i])) {
+				getNumber[n] = line[i];
+				n++;
+				num1read = true;
+			}
+			if(!isdigit(line[i]) && num1read && !num2read) {
+				rows = atoi(getNumber.c_str());
+				getNumber = "";
+				n = 0;
+			}
+			if((!isdigit(line[i]) || i == (line.length() - 1)) && num1read && num2read) {
+				columns = atoi(getNumber.c_str());
+			}
+		}
+		mygrid.resize(rows, columns);
+		n = 0;
+		while(n < (rows - 1)) {
+			if(!gridfile.good()) {
+				break;
+			}
+			for(int i = 0; i < (columns - 1); i++) {
+				character = gridfile.get();
+				if(character != ' ' && character != '\n') {
+					mygrid[n][i] = character;					
+				}
+			}
+			n++;
+		}
+	}
+	gridfile.close();
+	
 	/* this stuff is an attempt. doesn't work
     ifstream stream(fileName.c_str(), ifstream::in);{
 		if(!stream.is_open()) {
@@ -46,8 +92,7 @@ void grid::readGrid(const string& fileName) {
 		getline(stream, line);
 		parseLine(line, c);
 	}
-	stream.close();
-     */
+	stream.close();*/
 }
 
 void grid::parseLine(const string& line, int numLine) {

@@ -30,10 +30,10 @@ void findMatches(const grid& grid1, const vector<string>& wordl) {
 }
 
 void search(const int alg) {
-	string fileLoc;
-	cout << "Enter the file name of the grid you would like to use (including it's location):";
-	cin >> fileLoc;
-	grid grid1 = grid(fileLoc);
+	string fileName;
+	cout << "Enter the file name of the grid you would like to use: ";
+	cin >> fileName;
+	grid grid1 = grid(fileName);
 	wordList wordl = wordList();
 	
 	time_t CPUtimeStart;

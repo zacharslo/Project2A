@@ -30,6 +30,7 @@ class grid {
 		void parseLine(const string& line, int lineNum);
 		int rows;
 		int columns;
+		matrix<char> mygrid;
 };
 
 #endif
