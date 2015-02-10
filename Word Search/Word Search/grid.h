@@ -23,10 +23,10 @@ class grid {
 	public:
     	grid(const string& name);
     	void findMatches(const vector<string>& wordl) const;
-		
 
 	private:
 		void readGrid(const string& name);
+		bool followWord(const int& dir, const int& row, const int& column, const string& word, const int& character) const;
 		int rows;
 		int columns;
 		matrix<char> mygrid;

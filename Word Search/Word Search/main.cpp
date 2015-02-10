@@ -37,6 +37,8 @@ void findMatches(const grid& grid1, const vector<string>& wordl) {
 
 //Sorts the word list and then finds words in the user-entered grid.
 void search(const int alg) {
+	clock_t CPUtimeStart1;
+	CPUtimeStart1 = clock();
 	string fileName;
 	cout << "Enter the file name of the grid you would like to use: ";
 	cin >> fileName;
@@ -44,34 +46,36 @@ void search(const int alg) {
 	wordList wordl = wordList();
 	
 	//Keeps track of the time it takes to run sort and find match
-	time_t CPUtimeStart;
-	CPUtimeStart = time(NULL);
-	time_t CPUtimeSort;
-	time_t CPUtimeSearch;
-	time_t Totaltime;
+	clock_t CPUtimeStart2;
+	CPUtimeStart2 = clock();
+	clock_t CPUtimeSort;
+	clock_t CPUtimeSearch;
+	clock_t Totaltime;
 	
 	//uses a sort based off of user input.
 	if(alg == 0) {
 		wordl.insertionSort();
-		cout << "Sorted using Insertion Sort.\n";
+		cout << "\nSorted using Insertion Sort.\n";
 	}
 	if(alg == 1) {
 		wordl.quickSort(0, wordl.getWordList().size() - 1);
-		cout << "Sorted using Quick Sort.\n";
+		cout << "\nSorted using Quick Sort.\n";
 	}
 	if(alg == 2) {
 		wordl.mergeSort();
-		cout << "Sorted using Merge Sort.\n";
+		cout << "\nSorted using Merge Sort.\n";
 	}
-	
-	CPUtimeSort = time(NULL);
+	//save how long it took to sort
+	CPUtimeSort = clock();
 	
 	cout << "Words found in your grid:\n";
-	findMatches(grid1, wordl.getWordList());
+//	findMatches(grid1, wordl.getWordList());
 	
-	CPUtimeSearch = time(NULL);
+	CPUtimeSearch = clock();
 	
-	cout << "The time it took to sort the word list: " << difftime(CPUtimeSort, CPUtimeStart);
-	cout << "\nThe time it took to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeSort);
-	cout << "\nThe total time it took to sort the word list and to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeStart) << "\n\n";
+	cout << "\nThe time it took to sort the word list: " << difftime(CPUtimeSort, CPUtimeStart2);
+	cout << "\nThe time it took to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeSort) << "\n";
+	cout << "\nThe total time it took to sort the word list and to search the grid for\n  the words in the word list: " << difftime(CPUtimeSearch, CPUtimeStart2) << "\n";
+	cout << "\nThe total time it took run this program: " << difftime(CPUtimeSearch, CPUtimeStart1) << "\n";
+	
 }
