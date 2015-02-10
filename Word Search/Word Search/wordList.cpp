@@ -77,7 +77,17 @@ void wordList::binarySearch(const int binary) {
 
 
 void wordList::readWordList(const string& fileLoc) {
-//	Copy from grid function
+	ifstream wordListFile;
+	wordListFile.open("wordlist.txt");
+	string line;
+	
+	if(wordListFile.is_open()) {
+		while(wordListFile.good()) {
+			getline(wordListFile, line);
+			words.push_back(line);
+		}
+	}
+	wordListFile.close();
 }
 
 void wordList::swap(int word1, int word2) {

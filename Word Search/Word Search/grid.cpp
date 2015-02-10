@@ -29,7 +29,6 @@ void grid::findMatches(const vector<string>& wordl) const{
 void grid::readGrid(const string& fileName) {
 	// untested, but I think it will work.
 	char character;
-	int place;
 	string line;
 	string getNumber;
 	bool num1read = false;
@@ -95,8 +94,9 @@ void grid::readGrid(const string& fileName) {
 	stream.close();*/
 }
 
+/* This should no longer be needed
 void grid::parseLine(const string& line, int numLine) {
-    /* this stuff is an attempt. doest work
+    // this stuff is an attempt. doest work
     if(data.cols() * 2 - 1 != line.length()) {
         throw runtime_error("Matrix length isn't the same as line length");
 	}
@@ -115,7 +115,7 @@ void grid::parseLine(const string& line, int numLine) {
             data[numLine][cnt / 2] = line[cnt];
         }
     }
-     */
-}
+     
+}*/
 
 #endif

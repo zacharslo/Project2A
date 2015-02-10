@@ -27,7 +27,7 @@ class grid {
 
 	private:
 		void readGrid(const string& name);
-		void parseLine(const string& line, int lineNum);
+//		void parseLine(const string& line, int lineNum);
 		int rows;
 		int columns;
 		matrix<char> mygrid;
