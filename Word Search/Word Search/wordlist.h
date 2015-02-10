@@ -1,6 +1,6 @@
 /*
 wordList.h
-Authors: Zach Sloane and Andrew Blum
+Authors: Andrew Blum and Zach Sloane
 
 Description: Used to read from a text file and store a list of words as a vector
 */
@@ -23,7 +23,7 @@ ostream& operator<< (ostream& output, const vector<string>& words) {
 	for (int i = 0; i < (words.size() - 1); i++) {
         output << words[i] << "\n";
 	}
-	output << words.back() << "\n";
+	output << words.back() << "\n\n";
     return output;
 }
 

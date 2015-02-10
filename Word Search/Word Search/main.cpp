@@ -1,6 +1,6 @@
 /*
 main.cpp
-Author: Zach Sloane and Andrew Blum
+Authors: Andrew Blum and Zach Sloane
 
 Description: Word search
 */
@@ -16,7 +16,6 @@ using namespace std;
 
 void findMatches(const wordList& wordl, const grid& grid1);
 void search(const int alg);
-//void testSearch();
 
 int main() {
 	int sort;
@@ -31,10 +30,12 @@ int main() {
 	return 0;
 }
 
+//finds words in the grid entered in the search function.
 void findMatches(const grid& grid1, const vector<string>& wordl) {
 	grid1.findMatches(wordl);
 }
 
+//Sorts the word list and then finds words in the user-entered grid.
 void search(const int alg) {
 	string fileName;
 	cout << "Enter the file name of the grid you would like to use: ";
@@ -42,13 +43,14 @@ void search(const int alg) {
 	grid grid1 = grid(fileName);
 	wordList wordl = wordList();
 	
+	//Keeps track of the time it takes to run sort and find match
 	time_t CPUtimeStart;
 	CPUtimeStart = time(NULL);
 	time_t CPUtimeSort;
 	time_t CPUtimeSearch;
 	time_t Totaltime;
 	
-	
+	//uses a sort based off of user input.
 	if(alg == 0) {
 		wordl.insertionSort();
 		cout << "Sorted using Insertion Sort.\n";
@@ -64,15 +66,12 @@ void search(const int alg) {
 	
 	CPUtimeSort = time(NULL);
 	
-	cout << "Matches found:\n";
-	
+	cout << "Words found in your grid:\n";
 	findMatches(grid1, wordl.getWordList());
 	
 	CPUtimeSearch = time(NULL);
 	
 	cout << "The time it took to sort the word list: " << difftime(CPUtimeSort, CPUtimeStart);
-	
 	cout << "\nThe time it took to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeSort);
-	
 	cout << "\nThe total time it took to sort the word list and to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeStart) << "\n\n";
 }

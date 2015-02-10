@@ -1,6 +1,6 @@
 /*
 Grid.cpp
-Authors: Zach Sloane and Andrew Blum
+Authors: Andrew Blum and Zach Sloane
 
 Description: Used to read a matrix of words from file to search through
 */
@@ -35,11 +35,15 @@ void grid::readGrid(const string& fileName) {
 	bool num2read = false;
 	int n = 0;
 	
+	//opensgrid file
 	ifstream gridfile;
 	gridfile.open(fileName.c_str());
 	
+	//parses grid file
 	if(gridfile.is_open()) {
+		//gets the first line of the file (to get the row and column numbers)
 		getline(gridfile, line);
+		//separates the numbers and enters them into rows and columns in the grid class
 		for(int i = 0; i < (line.length() - 1); i++) {
 			if(isdigit(line[i])) {
 				getNumber[n] = line[i];
@@ -55,8 +59,12 @@ void grid::readGrid(const string& fileName) {
 				columns = atoi(getNumber.c_str());
 			}
 		}
+		
+		//sizes the grid matrix to the correct size
 		mygrid.resize(rows, columns);
 		n = 0;
+		
+		//populates the grid in the grid class from the grid in the file
 		while(n < (rows - 1)) {
 			if(!gridfile.good()) {
 				break;
@@ -70,6 +78,7 @@ void grid::readGrid(const string& fileName) {
 			n++;
 		}
 	}
+	//closes the grid file
 	gridfile.close();
 	
 	/* this stuff is an attempt. doesn't work

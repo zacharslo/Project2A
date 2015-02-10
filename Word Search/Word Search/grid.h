@@ -1,6 +1,6 @@
 /*
 Grid.h
-Authors: Zach Sloane and Andrew Blum
+Authors: Andrew Blum and Zach Sloane
 
 Description: Used to read a matrix of words from file to search through
 */
@@ -27,7 +27,6 @@ class grid {
 
 	private:
 		void readGrid(const string& name);
-//		void parseLine(const string& line, int lineNum);
 		int rows;
 		int columns;
 		matrix<char> mygrid;
