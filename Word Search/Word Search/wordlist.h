@@ -37,6 +37,7 @@ class wordList {
 		vector<string> getWordList() const;
 		
 		void insertionSort();
+        void insertionSort(words[], int length);
 		void quickSort(int low, int high);
 		void mergeSort();
 		

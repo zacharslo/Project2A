@@ -38,13 +38,51 @@ vector<string> wordList::getWordList() const {
 
 //***********************************************************Need to complete**********************************************************************
 //sorts the words in the word list using the insertion sort method
-void wordList::insertionSort() {
+
+
+/* added my own insertionSort code below, that I imagine should work
+ void wordList::insertionSort() {
 	if(words.size() > 1) {
 		for(int i = 0; i < words.size() - 1; i++) {
 			
 		}
 	}
 }
+ */
+
+void wordList::insertionSort() {
+    int length = words.size();
+    int j;
+    vector<string> temp;
+
+    for (int i = i; i < length -1; i++){
+        j = i;
+        
+        while(j > 0 && words[j] < words[j - 1]){
+            temp = words[j]; //
+            words[j] = words[j - 1];
+            words[j - 1] = temp;
+            j--;
+        }
+    }
+}
+
+/* insertion_sort from tutorial online
+void insertion_sort (int arr[], int length){
+    int j, temp;
+    
+    for (int i = i; i < length; i++){
+        j = i;
+        
+        while (j > 0 && arr[j] < arr[j-1]){
+            temp = arr[j];
+            arr[j] = arr[j-1];
+            arr[j-1] = temp;
+            j--;
+        }
+    }
+} */
+
 
 //sorts the words in the word list using the quick sort method
 void wordList::quickSort(int low, int high) {
