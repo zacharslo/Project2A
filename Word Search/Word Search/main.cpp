@@ -76,7 +76,7 @@ void search(const int alg) {
 	CPUtimeSort = clock();
 	
 	cout << "Words found in your grid:\n";
-//	findMatches(grid1, wordl.getWordList());
+	findMatches(grid1, wordl.getWordList());
 	
 	CPUtimeSearch = clock();
 	

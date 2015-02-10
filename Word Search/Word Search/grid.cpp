@@ -29,9 +29,11 @@ void grid::findMatches(const vector<string>& wordl) const{
 				word = wordl[i];
 				character = word[0];
 				if(character == mygrid[r][c]) {
+				cout << word << "\n" << character;
 					wordfound = followWord(dir, r, c, word, 1);
 				}
 				if(wordfound) {
+//					cout << "\n" << wordfound << "\n";
 					match.push_back(word);
 				}
 			}
@@ -98,32 +100,11 @@ void grid::readGrid(const string& fileName) {
 	}
 	//closes the grid file
 	gridfile.close();
-	
-	/* this stuff is an attempt. doesn't work
-    ifstream stream(fileName.c_str(), ifstream::in);{
-		if(!stream.is_open()) {
-			throw runtime_error("Failed to open grid file: " + fileName);
-		}
-	}
-
-	string line;
-	getline(stream, line);
-
-	int rows = (line[0] - '0') * 10 + (line[1] - '0');
-	int cols = (line[3] - '0') * 10 + (line[4] - '0');
-
-	data = matrix<char>(rows, cols, '0');
-
-	for(int cnt = 0; cnt < data.cols() && stream.good(); cnt++) {
-		getline(stream, line);
-		parseLine(line, c);
-	}
-	stream.close();*/
 }
 
 //helper function to find words in grid, once the first letter of a word is found, it checks to see if the rest of the word follows in any direction. If it is, then the true is returned
 bool grid::followWord(const int& dir, const int& r, const int& c, const string& word, const int& character) const {
-	int output;
+	bool output;
 	int newR;
 	int newC;
 	int newChar = (character + 1);
@@ -132,6 +113,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 	}
 	switch(dir) {
 		case 0:
+//			cout << "0";
 			output = followWord(1, r, c, word, character);
 			output = followWord(2, r, c, word, character);
 			output = followWord(3, r, c, word, character);
@@ -142,6 +124,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			output = followWord(9, r, c, word, character);
 			break;
 		case 1:
+//			cout << "1";
 			newR = r - character;
 			newC = c - character;
 			if(newR < 0) {
@@ -152,6 +135,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 2:
+//			cout << "2";
 			newR = r;
 			newC = c - character;
 			if(newC < 0) {
@@ -159,6 +143,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 3:
+//			cout << "3";
 			newR = r + character;
 			newC = c - character;
 			if(newR > (rows - 1)) {
@@ -169,6 +154,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 4:
+//			cout << "4";
 			newR = r - character;
 			newC = c;
 			if(newR < 0) {
@@ -176,6 +162,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 6:
+//			cout << "6";
 			newR = r + character;
 			newC = c;
 			if(newR > (rows - 1)) {
@@ -183,6 +170,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 7:
+//			cout << "7";
 			newR = r - character;
 			newC = c + character;
 			if(newR < 0) {
@@ -193,6 +181,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 8:
+//			cout << "8";
 			newR = r;
 			newC = c + character;
 			if(newC > (columns - 1)) {
@@ -200,6 +189,7 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		case 9:
+//			cout << "9";
 			newR = r + character;
 			newC = c + character;
 			if(newR > (rows - 1)) {
@@ -210,9 +200,12 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			}
 			break;
 		default:
+//			cout << "default";
 			output = followWord(0, r, c, word, character);
 	}
+//			cout << "end";
 	if(word[character] == mygrid[newR][newC]) {
+		cout << character;
 		if(character == (word.length() - 1)) {
 			return true;
 		}
@@ -220,7 +213,9 @@ bool grid::followWord(const int& dir, const int& r, const int& c, const string& 
 			output = followWord(dir, newR, newC, word, newChar);
 		}
 	}
+//			cout << "return";
 	if(word[character] != mygrid[newR][newC]) {
+//		cout << "   false\n"; 
 		return false;
 	}
 	return output;
