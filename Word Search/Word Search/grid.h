@@ -28,6 +28,8 @@ class grid {
 	private:
 		void readGrid(const string& name);
 		void parseLine(const string& line, int lineNum);
+		int rows;
+		int columns;
 };
 
 #endif

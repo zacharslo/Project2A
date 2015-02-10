@@ -1,9 +1,9 @@
 /*
 main.cpp
 Author: Zach Sloane and Andrew Blum
-Description: Word search
 
- */
+Description: Word search
+*/
 
 #include "grid.cpp"
 //#include "grid.c"
@@ -31,7 +31,7 @@ void findMatches(const grid& grid1, const vector<string>& wordl) {
 
 void search(const int alg) {
 	string fileLoc;
-	cout << "Enter the file name of the grid you would like to use (including it's location): ";
+	cout << "Enter the file name of the grid you would like to use (including it's location):";
 	cin >> fileLoc;
 	grid grid1 = grid(fileLoc);
 	wordList wordl = wordList();
@@ -54,11 +54,7 @@ void search(const int alg) {
 	if(alg == 2) {
 		wordl.mergeSort();
 		cout << "Sorted using Merge Sort.\n";
-	}/*
-	if(alg == 3) {
-		wordl.binarySort();
-		cout << "Sorted using Binary Sort.\n";
-	}*/
+	}
 	
 	CPUtimeSort = time(NULL);
 	

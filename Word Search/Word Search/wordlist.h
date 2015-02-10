@@ -39,7 +39,8 @@ class wordList {
 		void insertionSort();
 		void quickSort(int low, int high);
 		void mergeSort();
-		void binarySort();
+		
+		void binarySearch(const int binary);
 	
 	private:
 		void readWordList(const string& fileLoc);
