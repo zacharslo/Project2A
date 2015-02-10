@@ -53,7 +53,7 @@ vector<string> wordList::getWordList() const {
 void wordList::insertionSort() {
     int length = words.size();
     int j;
-    vector<string> temp;
+    string temp;
 
     for (int i = i; i < length -1; i++){
         j = i;
@@ -85,7 +85,7 @@ void insertion_sort (int arr[], int length){
 
 
 //sorts the words in the word list using the quick sort method
-void wordList::quickSort(int low, int high) {
+void wordList::quickSort( const int& low, const int& high) {
 	if(high - low > 1) {
 		
 		string pivot = words[high - 1];

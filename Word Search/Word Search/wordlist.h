@@ -37,8 +37,7 @@ class wordList {
 		vector<string> getWordList() const;
 		
 		void insertionSort();
-        void insertionSort(words[], int length);
-		void quickSort(int low, int high);
+		void quickSort(const int& low, const int& high);
 		void mergeSort();
 		
 		//I think that my implementation of binarySearch should work (so i commented yours out for the moment)
