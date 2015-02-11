@@ -45,6 +45,7 @@ class wordList {
 	
 	private:
 		void readWordList(const string& fileLoc);
+		vector<string> merge(const vector<string> list);
 		vector<string> words;
 	    void swap(int word1, int word2);
 	    bool binarySearch(const string& searchFor, int start, int end) const;

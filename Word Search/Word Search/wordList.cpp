@@ -36,53 +36,20 @@ vector<string> wordList::getWordList() const {
 }
 
 
-//***********************************************************Need to complete**********************************************************************
 //sorts the words in the word list using the insertion sort method
-
-
-/* added my own insertionSort code below, that I imagine should work
- void wordList::insertionSort() {
-	if(words.size() > 1) {
-		for(int i = 0; i < words.size() - 1; i++) {
-			
-		}
-	}
-}
- */
-
 void wordList::insertionSort() {
-    int length = words.size();
-    int j;
-    string temp;
-
-    for (int i = 0; i < length -1; i++){
-        j = i;
-        
-        while(j > 0 && words[j] < words[j - 1]){
-            temp = words[j]; //
-            words[j] = words[j - 1];
-            words[j - 1] = temp;
-            j--;
-        }
+	string temp;
+    for (int i = 1; i < words.size() - 1; i++){
+        for(int j = 0; j < i; j++) {
+        	if(words[j].compare(words[i]) < 0) {
+        		temp = words[j];
+        		words.erase(words.begin() + j);
+				words.insert(words.begin() + i, temp);
+			}
+		}
+		cout << "outside";
     }
 }
-
-/* insertion_sort from tutorial online
-void insertion_sort (int arr[], int length){
-    int j, temp;
-    
-    for (int i = i; i < length; i++){
-        j = i;
-        
-        while (j > 0 && arr[j] < arr[j-1]){
-            temp = arr[j];
-            arr[j] = arr[j-1];
-            arr[j-1] = temp;
-            j--;
-        }
-    }
-} */
-
 
 //sorts the words in the word list using the quick sort method
 void wordList::quickSort( const int& low, const int& high) {
@@ -105,14 +72,46 @@ void wordList::quickSort( const int& low, const int& high) {
 	}
 }
 
-//***********************************************************Need to complete**********************************************************************
 //sorts the words in the word list using the merge sort method
 void wordList::mergeSort() {
-/*	if(words.size() > 1) {
-		for(int i = 0; i < words.size() - 1; i++) {
-			
+	int middle = words.size()/2;
+	vector<string> first(middle);
+	vector<string> second(words.size() - middle);
+	for(int i = 0; i < first.size() - 1; i++) {
+		first[i] = words[i];
+	}
+	int i = first.size();
+	for(int j = 0; j < second.size() - 1; j++) {
+		second[j] = words[i];
+		i++;
+	}
+	int a = 0;
+	int b = 0;
+	vector<string> temp1 = first;
+	first = merge(temp1);
+	vector<string> temp2 = second;
+	second = merge(temp2);
+	cout << "put back together";
+	for(int k = 0; k < words.size() - 1; k++) {
+		if(a < first.size() - 1 && b < second.size() - 1) {
+			if(first[a].compare(second[b]) < 0) {
+				words[k] = first[a];
+				a++;
+			}
+			if(first[a].compare(second[b]) >= 0) {
+				words[k] = second[b];
+				b++;
+			}
 		}
-	}*/
+		if(a < first.size() - 1 && b >= second.size() - 1) {
+			words[k] = first[a];
+			a++;
+		}
+		if(a >= first.size() - 1 && b < second.size() - 1) {
+			words[k] = second[b];
+			b++;
+		}
+	}
 }
 
 bool wordList::binarySearch(const string& word, int start, int end) const{
@@ -149,6 +148,56 @@ void wordList::readWordList(const string& fileLoc) {
 	}
 	//closes word list file
 	wordListFile.close();
+}
+
+
+vector<string> wordList::merge(const vector<string> list) {
+	vector<string> half = list;
+	if(half.size() == 1) {
+		return half;
+	}
+	cout << "1";
+	int middle = half.size()/2;
+	vector<string> first(middle);
+	vector<string> second(words.size() - middle);
+	for(int i = 0; i < first.size() - 1; i++) {
+		first[i] = half[i];
+	}
+	int a = first.size();
+	for(int j = 0; j < second.size() - 1; j++) {
+		second[j] = half[a];
+		a++;
+	}
+	cout << "2";
+	a = 0;
+	int b = 0;
+	vector<string> temp1 = first;
+	first = merge(temp1);
+	vector<string> temp2 = second;
+	second = merge(temp2);
+	cout << "3";
+	for(int k = 0; k < half.size() - 1; k++) {
+		if(a < first.size() - 1 && b < second.size() - 1) {
+			if(first[a].compare(second[b]) < 0) {
+				half[k] = first[a];
+				a++;
+			}
+			if(first[a].compare(second[b]) >= 0) {
+				half[k] = second[b];
+				b++;
+			}
+		}
+		if(a < first.size() - 1 && b >= second.size() - 1) {
+			half[k] = first[a];
+			a++;
+		}
+		if(a >= first.size() - 1 && b < second.size() - 1) {
+			half[k] = second[b];
+			b++;
+		}
+	}
+	cout << "4";
+	return half;
 }
 
 //swaps 2 words in the word list at the inputted positions (used in quick sort)
