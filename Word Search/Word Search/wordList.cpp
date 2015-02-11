@@ -55,7 +55,7 @@ void wordList::insertionSort() {
     int j;
     string temp;
 
-    for (int i = i; i < length -1; i++){
+    for (int i = 0; i < length -1; i++){
         j = i;
         
         while(j > 0 && words[j] < words[j - 1]){
@@ -91,7 +91,7 @@ void wordList::quickSort( const int& low, const int& high) {
 		string pivot = words[high - 1];
 		int split = low;
 	
-		for(int i = low; i < (high - 1); i++) {
+		for(int i = low; i < high; i++) {
 			if(words[i].compare(pivot) < 0) {
 				swap(i, split);
 				split++;
@@ -108,20 +108,13 @@ void wordList::quickSort( const int& low, const int& high) {
 //***********************************************************Need to complete**********************************************************************
 //sorts the words in the word list using the merge sort method
 void wordList::mergeSort() {
-	if(words.size() > 1) {
+/*	if(words.size() > 1) {
 		for(int i = 0; i < words.size() - 1; i++) {
 			
 		}
-	}
+	}*/
 }
 
-//***********************************************************Need to complete**********************************************************************
-//Conducts a binary search of the word list
-/*void wordList::binarySearch(const int binary) {
-	if(words.size() - 1 < binary) {
-		
-	}
-}*/
 bool wordList::binarySearch(const string& word, int start, int end) const{
     if(end < start)
         return false;

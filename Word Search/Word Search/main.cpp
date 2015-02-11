@@ -6,15 +6,13 @@ Description: Word search
 */
 
 #include "grid.cpp"
-//#include "grid.c"
 #include "wordList.cpp"
-//#include "wordList.c"
 #include <string>
 #include <time.h>
 
 using namespace std;
 
-void findMatches(const wordList& wordl, const grid& grid1);
+wordList findMatches(const wordList& wordl, const grid& grid1);
 void search(const int alg);
 
 int main() {
@@ -23,9 +21,9 @@ int main() {
 	cin >> sort;
 	if(sort == 3) {
 		cout << "Each sorting method will be used. Notice, this is for testing purposes only.\nThere will be some repeats.\n\n";
-//		search(0);
+		search(0);
 		search(1);
-//		search(2);
+		search(2);
 		return 0;
 	}
 	if(sort < 0 || sort > 2) {
@@ -38,8 +36,8 @@ int main() {
 }
 
 //finds words in the grid entered in the search function.
-void findMatches(const grid& grid1, const vector<string>& wordl) {
-	grid1.findMatches(wordl);
+wordList findMatches(const grid& grid1, const vector<string>& wordl) {
+	return grid1.findMatches(wordl);
 }
 
 //Sorts the word list and then finds words in the user-entered grid.
@@ -76,9 +74,12 @@ void search(const int alg) {
 	CPUtimeSort = clock();
 	
 	cout << "Words found in your grid:\n";
-	findMatches(grid1, wordl.getWordList());
+	wordList matches = findMatches(grid1, wordl.getWordList());
 	
 	CPUtimeSearch = clock();
+	
+	matches.quickSort(0, matches.getWordList().size() - 1);
+	matches.printWordList();
 	
 	cout << "\nThe time it took to sort the word list: " << difftime(CPUtimeSort, CPUtimeStart2);
 	cout << "\nThe time it took to search the grid for the words in the word list: " << difftime(CPUtimeSearch, CPUtimeSort) << "\n";

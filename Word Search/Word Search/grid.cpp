@@ -15,7 +15,7 @@ grid::grid(const string& name) {
 }
 
 //I think it works now. Still needs to be tested though.
-void grid::findMatches(const vector<string>& wordl) const{
+wordList grid::findMatches(const vector<string>& wordl) const{
 	vector<string> match;
 	string word;
 	char character;
@@ -29,11 +29,9 @@ void grid::findMatches(const vector<string>& wordl) const{
 				word = wordl[i];
 				character = word[0];
 				if(character == mygrid[r][c]) {
-				cout << word << "\n" << character;
-					wordfound = followWord(dir, r, c, word, 1);
+					wordfound = followWord(dir, r, c, word);
 				}
 				if(wordfound) {
-//					cout << "\n" << wordfound << "\n";
 					match.push_back(word);
 				}
 			}
@@ -42,7 +40,7 @@ void grid::findMatches(const vector<string>& wordl) const{
 	
 	//Makes a new word list of the matching words and prints the list out
 	wordList matches(match);
-	matches.printWordList();
+	return matches;
 }
 
 void grid::readGrid(const string& fileName) {
@@ -103,146 +101,161 @@ void grid::readGrid(const string& fileName) {
 }
 
 //helper function to find words in grid, once the first letter of a word is found, it checks to see if the rest of the word follows in any direction. If it is, then the true is returned
-bool grid::followWord(const int& dir, const int& r, const int& c, const string& word, const int& character) const {
+bool grid::followWord(const int& dir, const int& row, const int& col, const string& word) const {
+	int r = row;
+	int c = col;
+	string temp;
 	bool output;
-	int newR;
-	int newC;
-	int newChar = (character + 1);
-	if(character >= (word.length() - 1)) {
-		return false;
-	}
 	switch(dir) {
+		//run through all the directions
 		case 0:
-//			cout << "0";
-			output = followWord(1, r, c, word, character);
-			output = followWord(2, r, c, word, character);
-			output = followWord(3, r, c, word, character);
-			output = followWord(4, r, c, word, character);
-			output = followWord(6, r, c, word, character);
-			output = followWord(7, r, c, word, character);
-			output = followWord(8, r, c, word, character);
-			output = followWord(9, r, c, word, character);
+			output = followWord(1, r, c, word);
+			output = followWord(2, r, c, word);
+			output = followWord(3, r, c, word);
+			output = followWord(4, r, c, word);
+			output = followWord(6, r, c, word);
+			output = followWord(7, r, c, word);
+			output = followWord(8, r, c, word);
+			output = followWord(9, r, c, word);
 			break;
 		case 1:
-//			cout << "1";
-			newR = r - character;
-			newC = c - character;
-			if(newR < 0) {
-				newR += rows;
+			//checks to bottom left
+			for(int i = 0; i < word.length(); i++) {
+				if(r-i < 0) {
+					r += rows;
+				}
+				if(c-i < 0) {
+					c += columns;
+				}
+				temp.push_back(mygrid[r-i][c-i]);
 			}
-			if(newC < 0) {
-				newC += columns;
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 2:
-//			cout << "2";
-			newR = r;
-			newC = c - character;
-			if(newC < 0) {
-				newC += columns;
+			//checks to bottom
+			for(int i = 0; i < word.length(); i++) {
+				
+				if(c-i < 0) {
+					c += columns;
+				}
+				temp.push_back(mygrid[r][c-i]);
+			}
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 3:
-//			cout << "3";
-			newR = r + character;
-			newC = c - character;
-			if(newR > (rows - 1)) {
-				newR -= rows;
+			//checks to bottom right
+			for(int i = 0; i < word.length(); i++) {
+				if(r+i > (rows-1)) {
+					r -= rows;
+				}
+				if(c-i < 0) {
+					c += columns;
+				}
+				temp.push_back(mygrid[r+i][c-i]);
 			}
-			if(newC < 0) {
-				newC += columns;
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 4:
-//			cout << "4";
-			newR = r - character;
-			newC = c;
-			if(newR < 0) {
-				newR += rows;
+			//checks to left
+			for(int i = 0; i < word.length(); i++) {
+				if(r-i < 0) {
+					r += rows;
+				}
+				temp.push_back(mygrid[r-i][c]);
+			}
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 6:
-//			cout << "6";
-			newR = r + character;
-			newC = c;
-			if(newR > (rows - 1)) {
-				newR -= rows;
+			//checks to right
+			for(int i = 0; i < word.length(); i++) {
+				if(r+i > (rows-1)) {
+					r -= rows;
+				}
+				temp.push_back(mygrid[r+i][c]);
+			}
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 7:
-//			cout << "7";
-			newR = r - character;
-			newC = c + character;
-			if(newR < 0) {
-				newR += rows;
+			//checks to top left
+			for(int i = 0; i < word.length(); i++) {
+				if(r-i < 0) {
+					r += rows;
+				}
+				if(c+i > (columns-1)) {
+					c -= rows;
+				}
+				temp.push_back(mygrid[r-i][c+i]);
 			}
-			if(newC > (columns - 1)) {
-				newC -= columns;
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 8:
-//			cout << "8";
-			newR = r;
-			newC = c + character;
-			if(newC > (columns - 1)) {
-				newC -= columns;
+			//checks to top
+			for(int i = 0; i < word.length(); i++) {
+				if(c+i > (columns-1)) {
+					c -= rows;
+				}
+				temp.push_back(mygrid[r][c+i]);
+			}
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		case 9:
-//			cout << "9";
-			newR = r + character;
-			newC = c + character;
-			if(newR > (rows - 1)) {
-				newR -= rows;
+			//checks to right
+			for(int i = 0; i < word.length(); i++) {
+				if(r+i > (rows-1)) {
+					r -= rows;
+				}
+				if(c+i > (columns-1)) {
+					c -= rows;
+				}
+				temp.push_back(mygrid[r+i][c+i]);
 			}
-			if(newC > (columns - 1)) {
-				newC -= columns;
+			if(temp == word) {
+				return true;
+			}
+			if(temp != word) {
+				return false;
 			}
 			break;
 		default:
-//			cout << "default";
-			output = followWord(0, r, c, word, character);
-	}
-//			cout << "end";
-	if(word[character] == mygrid[newR][newC]) {
-		cout << character;
-		if(character == (word.length() - 1)) {
-			return true;
-		}
-		if(character < (word.length() - 1)) {
-			output = followWord(dir, newR, newC, word, newChar);
-		}
-	}
-//			cout << "return";
-	if(word[character] != mygrid[newR][newC]) {
-//		cout << "   false\n"; 
-		return false;
+			cout << "\nfindMatch - 'default' called.\n";
+			output = followWord(0, r, c, word);
 	}
 	return output;
 }
-
-/* This should no longer be needed
-void grid::parseLine(const string& line, int numLine) {
-    // this stuff is an attempt. doest work
-    if(data.cols() * 2 - 1 != line.length()) {
-        throw runtime_error("Matrix length isn't the same as line length");
-	}
-    
-    for(int cnt = 0; cnt < data.cols() * 2 - 1; cnt++) {
-        if(line[cnt] == ' ') {
-            continue;
-        }
-        else if(line[cnt] == '\n') {
-            continue;
-        }
-        else if(line[cnt] < 'a' || line[cnt] > 'z') {
-            throw runtime_error("Entered character is not a-z:" + line[cnt]);
-        }
-        else  {
-            data[numLine][cnt / 2] = line[cnt];
-        }
-    }
-     
-}*/
 
 #endif
